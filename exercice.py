@@ -1,14 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from lib2to3.pgen2.token import NEWLINE
 import random
 
 def get_bill(name, data):
 	INDEX_NAME = 0
 	INDEX_QUANTITY = 1
 	INDEX_PRICE = 2
+	somme=0
+	
+	for produit in data:
+		somme+=produit[INDEX_QUANTITY ]* produit[INDEX_PRICE]
 
-	return ""
+	taxes=(somme*15)/100
+	total=somme+taxes
+	person=input('Enter yout name :')
+
+	bill_data = [("SOUS TOTAL", somme, "$"), 
+                 ("TAXES", taxes, "$"),
+                 ("TOTAL", total, "$")]
+
+	print(person,bill_data)
+	
 
 
 def format_number(number, num_decimal_digits):
